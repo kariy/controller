@@ -231,7 +231,7 @@ impl CartridgeAccount {
             self.account.address(),
             self.account.chain_id(),
             details.credentials.authorization,
-            session.clone(),
+            session,
         ))
     }
 }

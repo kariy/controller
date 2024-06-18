@@ -80,13 +80,14 @@ export function executeFactory({
 
       // Try execute from outside for fee subsized transactions
       try {
-        const res = await controller.account.cartridge.executeFromOutside(
-          transaction.transformCallsToMulticallArrays_cairo1(calls),
-          session,
-        );
+        const { transaction_hash } =
+          await controller.account.cartridge.executeFromOutside(
+            transaction.transformCallsToMulticallArrays_cairo1(calls),
+            session,
+          );
         return {
           code: ResponseCodes.SUCCESS,
-          ...res,
+          transaction_hash,
         };
       } catch (e) {
         /* do nothing */
